@@ -24,7 +24,7 @@ public class Bola extends GOval{
 			dy = dy * -1;
 		}
 		//rebote con las paredes 
-		if (getX()>ark.ANCHO_PANTALLA-30|| getX()<10){
+		if (getX()>ark.ANCHO_PANTALLA-330|| getX()<10){
 			dx = dx*-1;
 		}
 		//chequeo la esquina superior iz 
@@ -55,19 +55,17 @@ public class Bola extends GOval{
 			
 		}
 		else if (auxiliar instanceof Ladrillo){//si es un ladrillo 
-			if(auxiliar.getY()+getHeight() == posy || auxiliar.getY()==posy){
+			//para arreglar el rebote hay que modificar este rebote
+			if(auxiliar.getY()+auxiliar.getHeight() == posy || auxiliar.getY()==posy){
 				dy=dy*-1;
 			}
-			else if(auxiliar.getX()+getWidth()== posx || auxiliar.getX()==posx){
+			else if(auxiliar.getX()+auxiliar.getWidth()== posx || auxiliar.getX()==posx){
 				dx=dx*-1;
 			}
+			ark.miMarcador.incrementaMarcador(1);
 			ark.remove(auxiliar);
-			dy=dy*-1;
-			dx=dx*-1;
 			noHaChocado=false;
 		}
-		
-		
 		return noHaChocado;
 	}
 

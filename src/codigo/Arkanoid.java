@@ -11,26 +11,31 @@ public class Arkanoid extends GraphicsProgram {
 	
 	static final int ANCHO_LADRILLO = 35;
 	static final int ALTO_LADRILLO = 15;
-	static final int ANCHO_PANTALLA=520;
+	static final int ANCHO_PANTALLA=820;
 	
 	Bola bola1 = new Bola(10, 10, Color.PINK);
 	Cursor miCursor = new Cursor(200, 400, 60, 10, Color.GREEN);
 	
 	GImage fondo = new GImage("imagenes/fondo.png");
+	GRect fondoMarcador = new GRect(300,600);
+	Marcador miMarcador = new Marcador(20,40);
 	
 	public void init(){
+		fondoMarcador.setFilled(true);
+		add(fondoMarcador,ANCHO_PANTALLA-320,0);
 		add(fondo);
 		addMouseListeners();
 		add(bola1, 50, 100);
 		add(miCursor);
-		setSize(ANCHO_PANTALLA,500);
+		setSize(ANCHO_PANTALLA,560);
 	}
 	
 	public void run(){
 		creaPiramide();
+		miMarcador.addMarcador(this);
 		while (true){
 			bola1.muevete(this); //paso el objeto arkanoid 
-			pause(3);
+			pause(15);
 			miCursor.muevete(getWidth(), (int)bola1.getX());
 		}
 	}
