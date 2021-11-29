@@ -13,7 +13,7 @@ public class Cursor extends GRect{
 	}
 
 	public void muevete(int anchoPantalla, int posX){
-		if (posX + getWidth() <anchoPantalla-310){
+		if (posX + getWidth() <anchoPantalla-320){
 			setLocation(posX, getY());
 		}
 	}

@@ -12,31 +12,46 @@ public class Arkanoid extends GraphicsProgram {
 	static final int ANCHO_LADRILLO = 35;
 	static final int ALTO_LADRILLO = 15;
 	static final int ANCHO_PANTALLA=820;
+	boolean continuas=true;
 	
 	Bola bola1 = new Bola(10, 10, Color.PINK);
-	Cursor miCursor = new Cursor(200, 400, 60, 10, Color.GREEN);
+	Cursor miCursor = new Cursor(200, 470, 60, 10, Color.GREEN);
 	
+	GImage nombreP = new GImage("imagenes/nombre2.png");
 	GImage fondo = new GImage("imagenes/fondo.png");
 	GRect fondoMarcador = new GRect(300,600);
-	Marcador miMarcador = new Marcador(20,40);
+	Marcador miMarcador = new Marcador(200,60);
+	GImage inic = new GImage("imagenes/inic.png");
 	
 	public void init(){
+		setSize(ANCHO_PANTALLA,560);
+		add(inic);
+		waitForClick();
 		fondoMarcador.setFilled(true);
 		add(fondoMarcador,ANCHO_PANTALLA-320,0);
 		add(fondo);
+		add(nombreP,520,30);
 		addMouseListeners();
 		add(bola1, 50, 100);
 		add(miCursor);
-		setSize(ANCHO_PANTALLA,560);
 	}
 	
 	public void run(){
-		creaPiramide();
 		miMarcador.addMarcador(this);
-		while (true){
-			bola1.muevete(this); //paso el objeto arkanoid 
-			pause(15);
-			miCursor.muevete(getWidth(), (int)bola1.getX());
+		creaPiramide();
+		while(true){
+			while (continuas){
+				bola1.muevete(this); //paso el objeto arkanoid 
+				pause(5);
+				//miCursor.muevete(getWidth(), (int)bola1.getX());
+			}
+			if(continuas==false){
+			add(inic);
+			waitForClick();
+			continuas=true;
+			remove(inic);
+			add(bola1,50,100);
+			}
 		}
 	}
 	
