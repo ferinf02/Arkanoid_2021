@@ -34,6 +34,8 @@ public class Arkanoid extends GraphicsProgram {
 		addMouseListeners();
 		add(bola1, 50, 100);
 		add(miCursor);
+		
+		
 	}
 	
 	public void run(){
